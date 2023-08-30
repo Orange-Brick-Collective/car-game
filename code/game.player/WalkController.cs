@@ -1,5 +1,7 @@
 using Sandbox;
 
+namespace stuntjumper;
+
 public class WalkController : Controller {
     public Player plr;
 

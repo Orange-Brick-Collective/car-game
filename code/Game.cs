@@ -2,6 +2,8 @@
 using System;
 using System.Linq;
 
+namespace stuntjumper;
+
 public partial class MyGame : GameManager {
     public MyGame() { }
 

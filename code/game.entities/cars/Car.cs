@@ -1,5 +1,7 @@
 using Sandbox;
 
+namespace stuntjumper;
+
 public class CarSettings {
     public float WheelBaseLength = 700, WheelBaseWidth = 320;
 };
@@ -11,7 +13,7 @@ public class Car : AnimatedEntity, IUse {
     public void Init(CarSettings settings) {
         this.settings = settings;
     }
-    
+
     public void CreateWheels() {
 
     }

@@ -3,7 +3,7 @@
   "Type": "game",
   "Org": "local",
   "Ident": "stunt_jumper",
-  "Tags": null,
+  "Tags": "car",
   "Schema": 1,
   "HasAssets": true,
   "AssetsPath": "",
@@ -25,6 +25,7 @@
     "RankType": "None",
     "PerMapRanking": false,
     "LeaderboardType": "None",
-    "ProjectTemplate": null
+    "ProjectTemplate": null,
+    "CsProjName": ""
   }
 }

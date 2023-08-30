@@ -1,5 +1,7 @@
 using Sandbox;
 
+namespace stuntjumper;
+
 public partial class Controller {
 
     public virtual void BuildInput() { }

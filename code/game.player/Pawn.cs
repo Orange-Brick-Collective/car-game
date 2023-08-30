@@ -2,6 +2,8 @@
 using System;
 using System.Linq;
 
+namespace stuntjumper;
+
 public partial class Player : AnimatedEntity {
     [Net, Predicted] public Controller controller { get; set; }
     [ClientInput] public Vector3 InputDirection { get; set; }
