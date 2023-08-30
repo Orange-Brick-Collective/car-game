@@ -1,0 +1,89 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc29:version{3cec427c-1b0e-4d48-a90a-0436f33a6041} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderPrimitiveBox"
+						name = "box"
+						parent_bone = ""
+						material_name = "dev/helper/testgrid.vmat"
+						origin = [ 0.0, 0.0, 0.0 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						max_u = 1.44
+						max_v = 0.3
+						dimensions = [ 144.0, 72.0, 30.0 ]
+						segments_x = 1
+						segments_y = 1
+						segments_z = 1
+						invert = false
+					},
+					{
+						_class = "RenderPrimitiveBox"
+						name = "box1"
+						parent_bone = ""
+						material_name = "dev/helper/testgrid.vmat"
+						origin = [ -10.0, 0.0, 30.0 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						max_u = 0.6
+						max_v = 0.3
+						dimensions = [ 60.0, 70.0, 30.0 ]
+						segments_x = 1
+						segments_y = 1
+						segments_z = 1
+						invert = false
+					},
+					{
+						_class = "RenderPrimitiveBox"
+						name = "box2"
+						parent_bone = ""
+						material_name = "dev/helper/testgrid.vmat"
+						origin = [ 24.0, 0.0, 16.0 ]
+						angles = [ 50.0, 0.0, 0.0 ]
+						max_u = 0.5
+						max_v = 0.3
+						dimensions = [ 50.0, 69.0, 30.0 ]
+						segments_x = 1
+						segments_y = 1
+						segments_z = 1
+						invert = false
+					},
+				]
+			},
+			{
+				_class = "PhysicsShapeList"
+				children = 
+				[
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = ""
+						surface_prop = "metal.sheet"
+						collision_tags = "solid"
+						origin = [ 0.0, 0.0, 7.0 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						dimensions = [ 144.0, 72.0, 16.0 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = ""
+						surface_prop = "metal.sheet"
+						collision_tags = "solid"
+						origin = [ -10.0, 0.0, 30.0 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						dimensions = [ 60.0, 70.0, 30.0 ]
+					},
+				]
+			},
+		]
+		model_archetype = ""
+		primary_associated_entity = ""
+		anim_graph_name = ""
+		base_model_name = ""
+	}
+}

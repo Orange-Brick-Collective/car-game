@@ -2,44 +2,41 @@
 using System;
 using System.Linq;
 
-namespace stuntjumper;
+namespace cargame;
 
 public partial class Player : AnimatedEntity {
-    [Net, Predicted] public Controller controller { get; set; }
+    [Net, Predicted] public Controller Controller { get; set; }
     [ClientInput] public Vector3 InputDirection { get; set; }
     [ClientInput] public Angles ViewAngles { get; set; }
 
     public override void Spawn() {
         base.Spawn();
 
-        controller = new WalkController();
-        Model = Cloud.Model("https://asset.party/facepunch/watermelon");
+        ChangeController<WalkController>();
+        SetModel("models/player.vmdl");
+        SetupPhysicsFromModel(PhysicsMotionType.Keyframed);
 
         EnableDrawing = true;
         EnableHideInFirstPerson = true;
         EnableShadowInFirstPerson = true;
     }
 
-
     public override void BuildInput() {
-
+        Controller?.BuildInput();
     }
 
-    /// <summary>
-    /// Called every tick, clientside and serverside.
-    /// </summary>
     public override void Simulate(IClient cl) {
         base.Simulate(cl);
-
-
+        Controller?.Simulate(cl);
     }
 
-    /// <summary>
-    /// Called every frame on the client
-    /// </summary>
     public override void FrameSimulate(IClient cl) {
         base.FrameSimulate(cl);
+        Controller?.FrameSimulate(cl);
+    }
 
-
+    public Controller ChangeController<T>() where T : Controller, new() {
+        Controller = new T().Init(this);
+        return Controller;
     }
 }

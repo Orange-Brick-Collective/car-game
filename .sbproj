@@ -1,9 +1,9 @@
 {
-  "Title": "Stunt Jumper",
+  "Title": "Car Game",
   "Type": "game",
   "Org": "local",
-  "Ident": "stunt_jumper",
-  "Tags": "car",
+  "Ident": "car_game",
+  "Tags": "car cargame",
   "Schema": 1,
   "HasAssets": true,
   "AssetsPath": "",
