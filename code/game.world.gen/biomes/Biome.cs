@@ -18,8 +18,8 @@ public class Biome {
     public virtual Vector3 VertexPos(Vector3 chunkPos, int x, int y) {
         Vector3 pos;
 
-        int posX = (int)chunkPos.x + x * 100;
-        int posY = (int)chunkPos.y + y * 100;
+        int posX = (int)chunkPos.x + x * CM.QuadSide;
+        int posY = (int)chunkPos.y + y * CM.QuadSide;
 
         float biome = CM.NoisePerlin.GetNoise(posX * 0.05f, posY * 0.05f);
 

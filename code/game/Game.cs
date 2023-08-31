@@ -32,5 +32,7 @@ public partial class MyGame : GameManager {
         var pawn = new Player();
         client.Pawn = pawn;
         pawn.Position = Vector3.Up * 1000.0f;
+
+        ChunkManager.SpawnChunksClient(To.Single(client), ChunkManager.Seed);
     }
 }
