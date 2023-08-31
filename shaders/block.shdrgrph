@@ -1,0 +1,52 @@
+{
+  "Model": null,
+  "Description": "",
+  "BlendMode": "Opaque",
+  "nodes": [
+    {
+      "_class": "Result",
+      "Albedo": {
+        "Identifier": "1",
+        "Output": "Result"
+      },
+      "Emission": {},
+      "Opacity": {},
+      "Normal": {
+        "Identifier": "1",
+        "Output": "Result"
+      },
+      "Roughness": {},
+      "Metalness": {},
+      "AmbientOcclusion": {},
+      "DefaultOpacity": 1,
+      "DefaultRoughness": 1,
+      "DefaultMetalness": 0,
+      "DefaultAmbientOcclusion": 1,
+      "PositionOffset": {},
+      "Identifier": "0",
+      "Position": "-64,-224"
+    },
+    {
+      "_class": "TextureSampler",
+      "Coords": {},
+      "Image": "images/stonedebug.png",
+      "Sampler": {
+        "Filter": "Point"
+      },
+      "UI": {
+        "Name": "",
+        "Default": "1,1,1,1",
+        "SrgbRead": true,
+        "PrimaryGroup": {
+          "Name": ""
+        },
+        "SecondaryGroup": {
+          "Name": ""
+        },
+        "CreateInput": "CreateInputTexture2D"
+      },
+      "Identifier": "1",
+      "Position": "-352,-224"
+    }
+  ]
+}

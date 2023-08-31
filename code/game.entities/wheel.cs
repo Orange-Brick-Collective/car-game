@@ -1,6 +1,6 @@
 using Sandbox;
 
-namespace cargame;
+namespace CarGame;
 
 public class Wheel : AnimatedEntity {
 

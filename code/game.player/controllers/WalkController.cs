@@ -1,11 +1,13 @@
 using System;
 using Sandbox;
 
-namespace cargame;
+namespace CarGame;
 
 public partial class WalkController : Controller {
     [Net, Predicted] bool IsGrounded { get; set; } = false;
     public Vector3 ViewPosition => Plr.Position + (Vector3.Up * 61);
+
+    public TimeSince TimeSinceJump = 0;
 
     public override void BuildInput() {
         Plr.InputDirection = Input.AnalogMove;
@@ -19,10 +21,9 @@ public partial class WalkController : Controller {
     public override void Simulate(IClient cl) {
         Plr.Rotation = Plr.ViewAngles.WithPitch(0).ToRotation();
 
-        var groundedVec = Plr.Transform.WithPosition(Plr.Position + (Vector3.Down * 2));
+        var groundedVec = Plr.Transform.WithPosition(Plr.Position + (Vector3.Down * 5));
         var groundedTr = Trace.Sweep(Plr.PhysicsBody, Plr.Transform, groundedVec).Ignore(Plr).Run();
         IsGrounded = groundedTr.Hit;
-
         if (IsGrounded) {
             SimulateGrounded();
         } else {
@@ -46,15 +47,16 @@ public partial class WalkController : Controller {
         var movement = Plr.InputDirection.Normal;
         Plr.Velocity = Plr.Rotation * movement;
         Plr.Velocity *= Input.Down("run") ? 500 : 200;
+        Plr.Velocity += Vector3.Down;
 
-        var stepVec = Plr.Transform.WithPosition(Plr.Position + (Plr.Velocity.Normal * 2));
-        var stepTr = Trace.Sweep(Plr.PhysicsBody, stepVec.Add(Vector3.Up * 16, true), stepVec).Ignore(Plr).Run();
+        var stepVec = Plr.Transform.WithPosition(Plr.Position + (Plr.Velocity.Normal * 2) + Vector3.Up * 14);
+        var stepTr = Trace.Sweep(Plr.PhysicsBody, stepVec, stepVec.Add(Vector3.Down * 128, true)).Ignore(Plr).Run();
         if (stepTr.Hit && !stepTr.StartedSolid) {
-            Plr.Position = Plr.Position.WithZ(stepTr.HitPosition.z);
+            Plr.Position = Plr.Position.WithZ(stepTr.HitPosition.z + 4);
         }
 
         MoveHelper helper = new(Plr.Position, Plr.Velocity) {
-            Trace = Trace.Body(Plr.PhysicsBody, Plr.Position).Ignore(Plr)
+            Trace = Trace.Sphere(4, Plr.Position + Vector3.Up * 40, Plr.Position + Vector3.Up * 40).Ignore(Plr)
         };
 
         if (helper.TryMove(Time.Delta) > 0) {
@@ -82,6 +84,7 @@ public partial class WalkController : Controller {
         Camera.Position = ViewPosition;
         Camera.Rotation = Plr.ViewAngles.ToRotation();
         Camera.FieldOfView = Screen.CreateVerticalFieldOfView(Game.Preferences.FieldOfView);
+        Camera.ZFar = 160000;
         Camera.FirstPersonViewer = Plr;
     }
 }

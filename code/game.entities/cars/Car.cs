@@ -1,6 +1,6 @@
 using Sandbox;
 
-namespace cargame;
+namespace CarGame;
 
 // try to use all this stuff later
 public struct WheelData {

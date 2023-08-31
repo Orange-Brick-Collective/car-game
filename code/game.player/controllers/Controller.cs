@@ -1,6 +1,6 @@
 using Sandbox;
 
-namespace cargame;
+namespace CarGame;
 
 public partial class Controller : BaseNetworkable {
     [Net] public Player Plr { get; set; }

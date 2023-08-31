@@ -1,3 +1,3 @@
 using Sandbox;
 
-namespace cargame;
+namespace CarGame;

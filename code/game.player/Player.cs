@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 
-namespace cargame;
+namespace CarGame;
 
 public partial class Player : AnimatedEntity {
     [Net, Predicted] public Controller Controller { get; set; }

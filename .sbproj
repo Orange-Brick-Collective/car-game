@@ -26,6 +26,18 @@
     "PerMapRanking": false,
     "LeaderboardType": "None",
     "ProjectTemplate": null,
-    "CsProjName": ""
+    "CsProjName": "",
+    "LaunchConfigs": [
+      {
+        "Name": "My New Config",
+        "GameIdent": "local.car_game#local",
+        "MapName": "\u003Cempty\u003E",
+        "MaxPlayers": 1,
+        "GameSettings": {},
+        "Addons": "",
+        "PreLaunchCommand": "",
+        "PostLaunchCommand": ""
+      }
+    ]
   }
 }

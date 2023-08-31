@@ -1,6 +1,7 @@
+using System.Runtime.CompilerServices;
 using Sandbox;
 
-namespace cargame;
+namespace CarGame;
 
 public partial class CarController : Controller {
     [Net] public Car Car { get; set; }
@@ -12,12 +13,8 @@ public partial class CarController : Controller {
     }
 
     public override void Simulate(IClient cl) {
-        Car.Position += Plr.InputDirection;
-
-        var angle = Car.Rotation.Angles();
-        var vec = Vector3.Zero;
-        Car.Rotation.SmoothDamp(Car.Rotation, angle.WithYaw(angle.yaw + Plr.InputDirection.y).ToRotation(), ref vec, 1, Time.Delta);
-
+        Car.PhysicsBody.Position += Plr.InputDirection * Car.Rotation * 10;
+        Car.PhysicsBody.Rotation = Car.Rotation.RotateAroundAxis(Vector3.Up, Plr.InputDirection.y);
 
         if (Input.Pressed("use")) {
             Plr.ChangeController<WalkController>();
@@ -26,7 +23,8 @@ public partial class CarController : Controller {
 
     public override void FrameSimulate(IClient cl) {
         Camera.Position = Car.Position + Car.Rotation.Backward * 160 + Vector3.Up * 100;
-        Camera.Rotation = Car.Rotation;
+        var carRot = Car.Rotation.Angles().WithPitch(0).WithRoll(0).ToRotation();
+        Camera.Rotation = Rotation.Lerp(Camera.Rotation, carRot, Time.Delta * 3);
         Camera.FieldOfView = Screen.CreateVerticalFieldOfView(Game.Preferences.FieldOfView);
     }
 }
