@@ -13,12 +13,87 @@
 						_class = "RenderPrimitiveBox"
 						name = "box"
 						parent_bone = ""
-						material_name = "dev/helper/testgrid.vmat"
+						material_name = "materials/tire.vmat"
 						origin = [ 0.0, 0.0, 0.0 ]
 						angles = [ 0.0, 0.0, 0.0 ]
 						max_u = 1.0
 						max_v = 1.0
-						dimensions = [ 10.0, 10.0, 10.0 ]
+						dimensions = [ 10.0, 4.0, 10.0 ]
+						segments_x = 1
+						segments_y = 1
+						segments_z = 1
+						invert = false
+					},
+					{
+						_class = "RenderPrimitiveBox"
+						name = "box1"
+						parent_bone = ""
+						material_name = "materials/tire.vmat"
+						origin = [ 0.0, 0.0, 0.0 ]
+						angles = [ 15.0, 0.0, 0.0 ]
+						max_u = 1.0
+						max_v = 1.0
+						dimensions = [ 10.0, 3.99, 10.0 ]
+						segments_x = 1
+						segments_y = 1
+						segments_z = 1
+						invert = false
+					},
+					{
+						_class = "RenderPrimitiveBox"
+						name = "box2"
+						parent_bone = ""
+						material_name = "materials/tire.vmat"
+						origin = [ 0.0, 0.0, 0.0 ]
+						angles = [ 30.0, 0.0, 0.0 ]
+						max_u = 1.0
+						max_v = 1.0
+						dimensions = [ 10.0, 3.98, 10.0 ]
+						segments_x = 1
+						segments_y = 1
+						segments_z = 1
+						invert = false
+					},
+					{
+						_class = "RenderPrimitiveBox"
+						name = "box3"
+						parent_bone = ""
+						material_name = "materials/tire.vmat"
+						origin = [ 0.0, 0.0, 0.0 ]
+						angles = [ 45.0, 0.0, 0.0 ]
+						max_u = 1.0
+						max_v = 1.0
+						dimensions = [ 10.0, 3.97, 10.0 ]
+						segments_x = 1
+						segments_y = 1
+						segments_z = 1
+						invert = false
+					},
+					{
+						_class = "RenderPrimitiveBox"
+						name = "box4"
+						parent_bone = ""
+						material_name = "materials/tire.vmat"
+						origin = [ 0.0, 0.0, 0.0 ]
+						angles = [ 60.0, 0.0, 0.0 ]
+						max_u = 1.0
+						max_v = 1.0
+						dimensions = [ 10.0, 3.96, 10.0 ]
+						segments_x = 1
+						segments_y = 1
+						segments_z = 1
+						invert = false
+					},
+					{
+						_class = "RenderPrimitiveBox"
+						name = "box5"
+						parent_bone = ""
+						material_name = "materials/tire.vmat"
+						origin = [ 0.0, 0.0, 0.0 ]
+						angles = [ 75.0, 0.0, 0.0 ]
+						max_u = 1.0
+						max_v = 1.0
+						dimensions = [ 10.0, 3.95, 10.0 ]
 						segments_x = 1
 						segments_y = 1
 						segments_z = 1
@@ -30,5 +105,6 @@
 		model_archetype = ""
 		primary_associated_entity = ""
 		anim_graph_name = ""
+		base_model_name = ""
 	}
 }

@@ -1,0 +1,265 @@
+{
+  "SchemaVersion": 1,
+  "Name": null,
+  "Description": null,
+  "Root": {
+    "Guid": "5e58eee5-0b52-4b6e-9588-0c4aa1982619",
+    "Class": "Car",
+    "Entities": [
+      {
+        "Guid": "9bfab29c-818c-454d-a72d-16f428a7a6a4",
+        "Class": "Wheel",
+        "Entities": [],
+        "Components": [],
+        "Keys": {
+          "WheelWidth": {
+            "Type": "Single",
+            "Value": "6"
+          },
+          "WheelDiameter": {
+            "Type": "Single",
+            "Value": "10"
+          },
+          "TireDiameter": {
+            "Type": "Single",
+            "Value": "4"
+          },
+          "TirePSI": {
+            "Type": "Single",
+            "Value": "40"
+          },
+          "Powered": {
+            "Type": "Boolean",
+            "Value": "false"
+          },
+          "Steer": {
+            "Type": "Boolean",
+            "Value": "true"
+          },
+          "Model": {
+            "Type": "Model",
+            "Value": "\u0022models/debugwheel.vmdl\u0022"
+          },
+          "_name": {
+            "Value": "\u0022Untitled Entity\u0022"
+          },
+          "_localposition": {
+            "Value": "\u002245,36,-20\u0022"
+          },
+          "_localrotation": {
+            "Value": "\u00220,0,0\u0022"
+          },
+          "_scale": {
+            "Value": "2"
+          },
+          "_tags": {
+            "Value": "\u0022\u0022"
+          }
+        }
+      },
+      {
+        "Guid": "530b4e80-228f-4e12-a56b-9ed7ecd88c29",
+        "Class": "Wheel",
+        "Entities": [],
+        "Components": [],
+        "Keys": {
+          "WheelWidth": {
+            "Type": "Single",
+            "Value": "6"
+          },
+          "WheelDiameter": {
+            "Type": "Single",
+            "Value": "10"
+          },
+          "TireDiameter": {
+            "Type": "Single",
+            "Value": "4"
+          },
+          "TirePSI": {
+            "Type": "Single",
+            "Value": "40"
+          },
+          "Powered": {
+            "Type": "Boolean",
+            "Value": "false"
+          },
+          "Steer": {
+            "Type": "Boolean",
+            "Value": "true"
+          },
+          "Model": {
+            "Type": "Model",
+            "Value": "\u0022models/debugwheel.vmdl\u0022"
+          },
+          "_name": {
+            "Value": "\u0022Untitled Entity\u0022"
+          },
+          "_localposition": {
+            "Value": "\u002245,-36,-20\u0022"
+          },
+          "_localrotation": {
+            "Value": "\u00220,0,0\u0022"
+          },
+          "_scale": {
+            "Value": "2"
+          },
+          "_tags": {
+            "Value": "\u0022\u0022"
+          }
+        }
+      },
+      {
+        "Guid": "e6707e94-6d8a-4e78-8e47-29bed226b9d2",
+        "Class": "Wheel",
+        "Entities": [],
+        "Components": [],
+        "Keys": {
+          "WheelWidth": {
+            "Type": "Single",
+            "Value": "6"
+          },
+          "WheelDiameter": {
+            "Type": "Single",
+            "Value": "10"
+          },
+          "TireDiameter": {
+            "Type": "Single",
+            "Value": "4"
+          },
+          "TirePSI": {
+            "Type": "Single",
+            "Value": "40"
+          },
+          "Powered": {
+            "Type": "Boolean",
+            "Value": "true"
+          },
+          "Steer": {
+            "Type": "Boolean",
+            "Value": "false"
+          },
+          "Model": {
+            "Type": "Model",
+            "Value": "\u0022models/debugwheel.vmdl\u0022"
+          },
+          "_name": {
+            "Value": "\u0022Untitled Entity\u0022"
+          },
+          "_localposition": {
+            "Value": "\u0022-45,36,-20\u0022"
+          },
+          "_localrotation": {
+            "Value": "\u00220,0,0\u0022"
+          },
+          "_scale": {
+            "Value": "2"
+          },
+          "_tags": {
+            "Value": "\u0022\u0022"
+          }
+        }
+      },
+      {
+        "Guid": "c1157139-678e-4d30-9ee3-e436128650ad",
+        "Class": "Wheel",
+        "Entities": [],
+        "Components": [],
+        "Keys": {
+          "WheelWidth": {
+            "Type": "Single",
+            "Value": "6"
+          },
+          "WheelDiameter": {
+            "Type": "Single",
+            "Value": "10"
+          },
+          "TireDiameter": {
+            "Type": "Single",
+            "Value": "4"
+          },
+          "TirePSI": {
+            "Type": "Single",
+            "Value": "40"
+          },
+          "Powered": {
+            "Type": "Boolean",
+            "Value": "true"
+          },
+          "Steer": {
+            "Type": "Boolean",
+            "Value": "false"
+          },
+          "Model": {
+            "Type": "Model",
+            "Value": "\u0022models/debugwheel.vmdl\u0022"
+          },
+          "_name": {
+            "Value": "\u0022Untitled Entity\u0022"
+          },
+          "_localposition": {
+            "Value": "\u0022-45,-36,-20\u0022"
+          },
+          "_localrotation": {
+            "Value": "\u00220,0,0\u0022"
+          },
+          "_scale": {
+            "Value": "2"
+          },
+          "_tags": {
+            "Value": "\u0022\u0022"
+          }
+        }
+      }
+    ],
+    "Components": [],
+    "Keys": {
+      "ColumnTop": {
+        "Type": "Vector3",
+        "Value": "\u00220,0,0\u0022"
+      },
+      "DamperStart": {
+        "Type": "Single",
+        "Value": "96"
+      },
+      "DamperStrength": {
+        "Type": "Single",
+        "Value": "50"
+      },
+      "SpringStrength": {
+        "Type": "Single",
+        "Value": "250"
+      },
+      "Torque": {
+        "Type": "Single",
+        "Value": "65"
+      },
+      "Horsepower": {
+        "Type": "Single",
+        "Value": "60"
+      },
+      "Redline": {
+        "Type": "Int32",
+        "Value": "4000"
+      },
+      "Model": {
+        "Type": "Model",
+        "Value": "\u0022models/debugcar.vmdl\u0022"
+      },
+      "_name": {
+        "Value": "\u0022Root Entity\u0022"
+      },
+      "_localposition": {
+        "Value": "\u00220,0,0\u0022"
+      },
+      "_localrotation": {
+        "Value": "\u00220,0,0\u0022"
+      },
+      "_scale": {
+        "Value": "1"
+      },
+      "_tags": {
+        "Value": "\u0022\u0022"
+      }
+    }
+  }
+}

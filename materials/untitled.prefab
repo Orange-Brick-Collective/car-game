@@ -1,0 +1,275 @@
+{
+  "SchemaVersion": 1,
+  "Name": null,
+  "Description": null,
+  "Root": {
+    "Guid": "9442e9b2-a105-4202-ac15-9c622bcc05cc",
+    "Class": "Car",
+    "Entities": [
+      {
+        "Guid": "e86cfeea-b2f5-4602-8d3e-c321fd697736",
+        "Class": "Wheel",
+        "Entities": [],
+        "Components": [],
+        "Keys": {
+          "Model": {
+            "Type": "Model",
+            "Value": "\u0022models/debugwheel.vmdl\u0022"
+          },
+          "WheelWidth": {
+            "Type": "Single",
+            "Value": "0"
+          },
+          "WheelDiameter": {
+            "Type": "Single",
+            "Value": "0"
+          },
+          "TireDiameter": {
+            "Type": "Single",
+            "Value": "0"
+          },
+          "TirePSI": {
+            "Type": "Single",
+            "Value": "0"
+          },
+          "Powered": {
+            "Type": "Boolean",
+            "Value": "false"
+          },
+          "PoweredReverse": {
+            "Type": "Boolean",
+            "Value": "false"
+          },
+          "Steer": {
+            "Type": "Boolean",
+            "Value": "true"
+          },
+          "SteerReverse": {
+            "Type": "Boolean",
+            "Value": "false"
+          },
+          "_name": {
+            "Value": "\u0022Untitled Entity\u0022"
+          },
+          "_localposition": {
+            "Value": "\u002245,34.665,-19.64232\u0022"
+          },
+          "_localrotation": {
+            "Value": "\u00220,0,0\u0022"
+          },
+          "_scale": {
+            "Value": "2"
+          },
+          "_tags": {}
+        }
+      },
+      {
+        "Guid": "f0f58da9-cbce-4a01-9ac2-0b664f695fe7",
+        "Class": "Wheel",
+        "Entities": [],
+        "Components": [],
+        "Keys": {
+          "Model": {
+            "Type": "Model",
+            "Value": "\u0022models/debugwheel.vmdl\u0022"
+          },
+          "WheelWidth": {
+            "Type": "Single",
+            "Value": "0"
+          },
+          "WheelDiameter": {
+            "Type": "Single",
+            "Value": "0"
+          },
+          "TireDiameter": {
+            "Type": "Single",
+            "Value": "0"
+          },
+          "TirePSI": {
+            "Type": "Single",
+            "Value": "0"
+          },
+          "Powered": {
+            "Type": "Boolean",
+            "Value": "false"
+          },
+          "PoweredReverse": {
+            "Type": "Boolean",
+            "Value": "false"
+          },
+          "Steer": {
+            "Type": "Boolean",
+            "Value": "true"
+          },
+          "SteerReverse": {
+            "Type": "Boolean",
+            "Value": "false"
+          },
+          "_name": {
+            "Value": "\u0022Untitled Entity\u0022"
+          },
+          "_localposition": {
+            "Value": "\u002245,-34.66467,-19.64232\u0022"
+          },
+          "_localrotation": {
+            "Value": "\u00220,0,0\u0022"
+          },
+          "_scale": {
+            "Value": "2"
+          },
+          "_tags": {
+            "Value": "\u0022\u0022"
+          }
+        }
+      },
+      {
+        "Guid": "8571053b-bdaf-4ae2-9fa2-b5d379521671",
+        "Class": "Wheel",
+        "Entities": [],
+        "Components": [],
+        "Keys": {
+          "Model": {
+            "Type": "Model",
+            "Value": "\u0022models/debugwheel.vmdl\u0022"
+          },
+          "WheelWidth": {
+            "Type": "Single",
+            "Value": "0"
+          },
+          "WheelDiameter": {
+            "Type": "Single",
+            "Value": "0"
+          },
+          "TireDiameter": {
+            "Type": "Single",
+            "Value": "0"
+          },
+          "TirePSI": {
+            "Type": "Single",
+            "Value": "0"
+          },
+          "Powered": {
+            "Type": "Boolean",
+            "Value": "true"
+          },
+          "PoweredReverse": {
+            "Type": "Boolean",
+            "Value": "false"
+          },
+          "Steer": {
+            "Type": "Boolean",
+            "Value": "false"
+          },
+          "SteerReverse": {
+            "Type": "Boolean",
+            "Value": "false"
+          },
+          "_name": {
+            "Value": "\u0022Untitled Entity\u0022"
+          },
+          "_localposition": {
+            "Value": "\u0022-47,-34.66467,-19.64232\u0022"
+          },
+          "_localrotation": {
+            "Value": "\u00220,0,0\u0022"
+          },
+          "_scale": {
+            "Value": "2"
+          },
+          "_tags": {
+            "Value": "\u0022\u0022"
+          }
+        }
+      },
+      {
+        "Guid": "55fc2541-1a04-4695-8fe4-6366be637293",
+        "Class": "Wheel",
+        "Entities": [],
+        "Components": [],
+        "Keys": {
+          "Model": {
+            "Type": "Model",
+            "Value": "\u0022models/debugwheel.vmdl\u0022"
+          },
+          "WheelWidth": {
+            "Type": "Single",
+            "Value": "0"
+          },
+          "WheelDiameter": {
+            "Type": "Single",
+            "Value": "12"
+          },
+          "TireDiameter": {
+            "Type": "Single",
+            "Value": "0"
+          },
+          "TirePSI": {
+            "Type": "Single",
+            "Value": "0"
+          },
+          "Powered": {
+            "Type": "Boolean",
+            "Value": "true"
+          },
+          "PoweredReverse": {
+            "Type": "Boolean",
+            "Value": "false"
+          },
+          "Steer": {
+            "Type": "Boolean",
+            "Value": "false"
+          },
+          "SteerReverse": {
+            "Type": "Boolean",
+            "Value": "false"
+          },
+          "_name": {
+            "Value": "\u0022Untitled Entity\u0022"
+          },
+          "_localposition": {
+            "Value": "\u0022-47,34.665,-19.64232\u0022"
+          },
+          "_localrotation": {
+            "Value": "\u00220,0,0\u0022"
+          },
+          "_scale": {
+            "Value": "2"
+          },
+          "_tags": {
+            "Value": "\u0022\u0022"
+          }
+        }
+      }
+    ],
+    "Components": [],
+    "Keys": {
+      "_name": {
+        "Value": "\u0022Root Entity\u0022"
+      },
+      "_localposition": {
+        "Value": "\u00220,0,0\u0022"
+      },
+      "_localrotation": {
+        "Value": "\u00220,0,0\u0022"
+      },
+      "_scale": {
+        "Value": "1"
+      },
+      "_tags": {
+        "Value": "\u0022\u0022"
+      },
+      "Model": {
+        "Type": "Model",
+        "Value": "\u0022models/debugcar.vmdl\u0022"
+      },
+      "PoweredWheels": {
+        "Type": "List\u00601",
+        "Value": "[]"
+      },
+      "RenderColor": {
+        "Type": "Color",
+        "Value": "\u00221,1,1,1\u0022"
+      }
+    }
+  }
+}

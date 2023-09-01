@@ -30,13 +30,17 @@ public partial class WalkController : Controller {
             SimulateAir();
         }
 
-        if (Input.Pressed("attack1")) {
-            _ = new Car() { Data = new CarData() { ModelPath = "models/debugcar.vmdl" } };
+        if (Input.Pressed("attack1") && Game.IsServer) {
+            var tr = Trace.Ray(ViewPosition, ViewPosition + (Plr.ViewAngles.Forward * 150)).Ignore(Plr).Run();
+            if (PrefabLibrary.TrySpawn<Entity>("prefabs/debugcar.prefab", out var car)) {
+                car.Position = tr.EndPosition;
+                car.Rotation = Rotation.From(new Angles(Vector3.Up));
+            }
         }
 
-        if (Input.Pressed("use")) {
+        if (Input.Pressed("use") && Game.IsServer) {
             var tr = Trace.Ray(ViewPosition, ViewPosition + (Plr.ViewAngles.Forward * 150)).Ignore(Plr).Run();
-            DebugOverlay.TraceResult(tr, 1);
+
             if (tr.Hit && tr.Entity is IUse use) {
                 if (use.IsUsable(Plr)) use.OnUse(Plr);
             }
