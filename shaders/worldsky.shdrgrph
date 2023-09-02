@@ -1,38 +1,167 @@
 {
-  "Model": null,
+  "Model": "models/dev/box.vmdl",
   "Description": "",
   "BlendMode": "Opaque",
   "nodes": [
     {
       "_class": "Result",
       "Albedo": {
-        "Identifier": "1",
+        "Identifier": "12",
         "Output": "Result"
       },
       "Emission": {
-        "Identifier": "4",
+        "Identifier": "3",
         "Output": "Result"
       },
       "Opacity": {},
-      "Normal": {
-        "Identifier": "1",
-        "Output": "Result"
-      },
+      "Normal": {},
       "Roughness": {},
       "Metalness": {},
       "AmbientOcclusion": {},
       "DefaultOpacity": 1,
-      "DefaultRoughness": 1,
+      "DefaultRoughness": 0,
       "DefaultMetalness": 0,
-      "DefaultAmbientOcclusion": 1,
+      "DefaultAmbientOcclusion": 0,
       "PositionOffset": {},
       "Identifier": "0",
       "Position": "128,-128"
     },
     {
+      "_class": "Float",
+      "Min": 0,
+      "Max": 1,
+      "Value": 1,
+      "Name": "something",
+      "IsAttribute": true,
+      "UI": {},
+      "Identifier": "1",
+      "Position": "-832,320"
+    },
+    {
+      "_class": "Divide",
+      "A": {
+        "Identifier": "6",
+        "Output": "Z"
+      },
+      "B": {},
+      "DefaultA": 0,
+      "DefaultB": 150000,
+      "Identifier": "2",
+      "Position": "-816,-192"
+    },
+    {
+      "_class": "Blend",
+      "A": {
+        "Identifier": "8",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "9",
+        "Output": "Result"
+      },
+      "C": {
+        "Identifier": "11",
+        "Output": "Result"
+      },
+      "Fraction": 0.5,
+      "BlendMode": "Mix",
+      "Clamp": true,
+      "Identifier": "3",
+      "Position": "-160,96"
+    },
+    {
+      "_class": "Float4",
+      "Value": "1,0,0,1",
+      "Name": "topcolor",
+      "IsAttribute": true,
+      "UI": {
+        "Type": "Color",
+        "PrimaryGroup": {
+          "Name": ""
+        },
+        "SecondaryGroup": {
+          "Name": ""
+        }
+      },
+      "Identifier": "4",
+      "Position": "-832,-0"
+    },
+    {
+      "_class": "ObjectPosition",
+      "Identifier": "5",
+      "Position": "-1216,-256"
+    },
+    {
+      "_class": "SplitVector",
+      "Input": {
+        "Identifier": "5",
+        "Output": "Result"
+      },
+      "Identifier": "6",
+      "Position": "-1040,-256"
+    },
+    {
+      "_class": "Float4",
+      "Value": "0,1,0,1",
+      "Name": "bottomcolor",
+      "IsAttribute": true,
+      "UI": {
+        "Type": "Color"
+      },
+      "Identifier": "7",
+      "Position": "-832,160"
+    },
+    {
+      "_class": "Multiply",
+      "A": {
+        "Identifier": "4",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "2",
+        "Output": "Result"
+      },
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "8",
+      "Position": "-384,48"
+    },
+    {
+      "_class": "Multiply",
+      "A": {
+        "Identifier": "7",
+        "Output": "Result"
+      },
+      "B": {
+        "Identifier": "11",
+        "Output": "Result"
+      },
+      "DefaultA": 0,
+      "DefaultB": 1,
+      "Identifier": "9",
+      "Position": "-384,144"
+    },
+    {
+      "_class": "WorldPosition",
+      "Identifier": "10",
+      "Position": "-1216,-192"
+    },
+    {
+      "_class": "Subtract",
+      "A": {
+        "Identifier": "2",
+        "Output": "Result"
+      },
+      "B": {},
+      "DefaultA": 1,
+      "DefaultB": 0,
+      "Identifier": "11",
+      "Position": "-704,-96"
+    },
+    {
       "_class": "TextureSampler",
       "Coords": {},
-      "Image": "images/stonedebug.png",
+      "Image": "images/white.png",
       "Sampler": {
         "Filter": "Point"
       },
@@ -42,72 +171,17 @@
         "SrgbRead": true,
         "CreateInput": "CreateInputTexture2D"
       },
-      "Identifier": "1",
-      "Position": "-304,-128"
+      "Identifier": "12",
+      "Position": "-160,-112"
     },
     {
-      "_class": "SimplexNoise",
-      "Coords": {
-        "Identifier": "5",
-        "Output": "Result"
-      },
-      "Identifier": "2",
-      "Position": "-304,64"
-    },
-    {
-      "_class": "Time",
-      "Identifier": "3",
-      "Position": "-880,80"
-    },
-    {
-      "_class": "Add",
-      "A": {
-        "Identifier": "7",
-        "Output": "Result"
-      },
-      "B": {},
-      "DefaultA": 0,
-      "DefaultB": 0.6,
-      "Identifier": "4",
-      "Position": "0,112"
-    },
-    {
-      "_class": "TileAndOffset",
-      "Coords": {},
-      "Tile": {},
-      "Offset": {
-        "Identifier": "6",
-        "Output": "Result"
-      },
-      "DefaultTile": "1,1",
-      "DefaultOffset": "0,0",
-      "WrapTo01": false,
-      "Identifier": "5",
-      "Position": "-512,48"
-    },
-    {
-      "_class": "Multiply",
-      "A": {
-        "Identifier": "3",
-        "Output": "Result"
-      },
-      "B": {},
-      "DefaultA": 0,
-      "DefaultB": 0.02,
-      "Identifier": "6",
-      "Position": "-656,64"
-    },
-    {
-      "_class": "Multiply",
-      "A": {
-        "Identifier": "2",
-        "Output": "Result"
-      },
-      "B": {},
-      "DefaultA": 0,
-      "DefaultB": 0.4,
-      "Identifier": "7",
-      "Position": "-112,64"
+      "_class": "Float3",
+      "Value": "0,0.5699372,0",
+      "Name": "",
+      "IsAttribute": false,
+      "UI": {},
+      "Identifier": "13",
+      "Position": "-128,-304"
     }
   ]
 }

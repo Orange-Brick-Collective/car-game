@@ -26,9 +26,9 @@ public partial class Wheel : AnimatedEntity, IWheel {
     public override void Spawn() => DelaySpawn();
     public async void DelaySpawn() {
         await GameTask.DelayRealtime(20);
-        Vector3 width = new(0, WheelWidth * 0.5f, 0);
-        Capsule capsule = new(width, -width, WheelDiameter);
-        SetupPhysicsFromCylinder(PhysicsMotionType.Keyframed, capsule);
+        // Vector3 width = new(0, WheelWidth * 0.5f, 0);
+        // Capsule capsule = new(width, -width, WheelDiameter);
+        // SetupPhysicsFromCylinder(PhysicsMotionType.Keyframed, capsule);
     }
 
     public override void Simulate(IClient cl) {

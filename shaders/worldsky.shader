@@ -35,12 +35,16 @@ COMMON
 struct VertexInput
 {
 	#include "common/vertexinput.hlsl"
+	float4 vColor : COLOR0 < Semantic( Color ); >;
 };
 
 struct PixelInput
 {
 	#include "common/pixelinput.hlsl"
 	float3 vPositionOs : TEXCOORD14;
+	float3 vNormalOs : TEXCOORD15;
+	float4 vTangentUOs_flTangentVSign : TANGENT	< Semantic( TangentU_SignV ); >;
+	float4 vColor : COLOR0;
 };
 
 VS
@@ -51,6 +55,9 @@ VS
 	{
 		PixelInput i = ProcessVertex( v );
 		i.vPositionOs = v.vPositionOs.xyz;
+		i.vColor = v.vColor;
+
+		VS_DecodeObjectSpaceNormalAndTangent( v, i.vNormalOs, i.vTangentUOs_flTangentVSign );
 
 		return FinalizeVertex( i );
 	}
@@ -63,6 +70,8 @@ PS
 	SamplerState g_sSampler0 < Filter( POINT ); AddressU( WRAP ); AddressV( WRAP ); >;
 	CreateInputTexture2D( Texture_ps_0, Srgb, 8, "None", "_color", ",0/,0/0", Default4( 1.00, 1.00, 1.00, 1.00 ) );
 	Texture2D g_tTexture_ps_0 < Channel( RGBA, Box( Texture_ps_0 ), Srgb ); OutputFormat( DXT5 ); SrgbRead( True ); >;
+	float4 g_vtopcolor < Attribute( "topcolor" ); >;
+	float4 g_vbottomcolor < Attribute( "bottomcolor" ); >;
 	
 	float4 MainPs( PixelInput i ) : SV_Target0
 	{
@@ -78,19 +87,22 @@ PS
 		m.Transmission = 0;
 		
 		float4 l_0 = Tex2DS( g_tTexture_ps_0, g_sSampler0, i.vTextureCoords.xy );
-		float l_1 = g_flTime * 0.02;
-		float2 l_2 = TileAndOffsetUv( i.vTextureCoords.xy, float2( 1, 1 ), float2( l_1, l_1 ) );
-		float l_3 = Simplex2D( l_2 );
-		float l_4 = l_3 * 0.4;
-		float l_5 = l_4 + 0.6;
+		float4 l_1 = g_vtopcolor;
+		float3 l_2 = i.vPositionOs;
+		float l_3 = l_2.z;
+		float l_4 = l_3 / 150000;
+		float4 l_5 = l_1 * float4( l_4, l_4, l_4, l_4 );
+		float4 l_6 = g_vbottomcolor;
+		float l_7 = l_4 - 0;
+		float4 l_8 = l_6 * float4( l_7, l_7, l_7, l_7 );
+		float4 l_9 = saturate( lerp( l_5, l_8, l_7 ) );
 		
 		m.Albedo = l_0.xyz;
-		m.Emission = float3( l_5, l_5, l_5 );
+		m.Emission = l_9.xyz;
 		m.Opacity = 1;
-		m.Normal = l_0.xyz;
-		m.Roughness = 1;
+		m.Roughness = 0;
 		m.Metalness = 0;
-		m.AmbientOcclusion = 1;
+		m.AmbientOcclusion = 0;
 		
 		m.AmbientOcclusion = saturate( m.AmbientOcclusion );
 		m.Roughness = saturate( m.Roughness );
