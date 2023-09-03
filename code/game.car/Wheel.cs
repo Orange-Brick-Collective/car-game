@@ -3,6 +3,8 @@ using Sandbox;
 namespace CarGame;
 
 public interface IWheel {
+    public Vector3 LocalPosition { get; set; }
+    public Angles LocalRotation { get; set; }
     public float WheelWidth { get; set; }
     public float WheelDiameter { get; set; }
     public float TireDiameter { get; set; }
@@ -12,9 +14,9 @@ public interface IWheel {
 }
 
 [Prefab]
-public partial class Wheel : AnimatedEntity, IWheel {
-    public Car parentCar;
-
+public partial class Wheel : BaseNetworkable, IWheel {
+    [Prefab, Net, Editor.PointLine] public Vector3 LocalPosition { get; set; }
+    [Prefab, Net] public Angles LocalRotation { get; set; }
     [Prefab, Net] public float WheelWidth { get; set; }
     [Prefab, Net] public float WheelDiameter { get; set; }
     [Prefab, Net] public float TireDiameter { get; set; }
@@ -23,16 +25,6 @@ public partial class Wheel : AnimatedEntity, IWheel {
     [Prefab, Net] public bool Powered { get; set; }
     [Prefab, Net] public bool Steer { get; set; }
 
-    public override void Spawn() => DelaySpawn();
-    public async void DelaySpawn() {
-        await GameTask.DelayRealtime(20);
-        // Vector3 width = new(0, WheelWidth * 0.5f, 0);
-        // Capsule capsule = new(width, -width, WheelDiameter);
-        // SetupPhysicsFromCylinder(PhysicsMotionType.Keyframed, capsule);
-    }
-
-    public override void Simulate(IClient cl) {
-        // Position
-    }
-
+    [Net] public bool Grounded { get; set; }
+    // ! todo: grip
 }

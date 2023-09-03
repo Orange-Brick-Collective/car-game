@@ -30,7 +30,14 @@ public partial class WalkController : Controller {
             SimulateAir();
         }
 
-        if (Input.Pressed("attack1") && Game.IsServer) {
+        if (Input.Pressed("Reload") && Game.IsServer) {
+            var tr = Trace.Ray(ViewPosition, ViewPosition + (Plr.ViewAngles.Forward * 150)).Ignore(Plr).Run();
+            if (tr.Hit && tr.Entity is Car car) {
+                car.Delete();
+            }
+        }
+
+        if (Input.Pressed("Score") && Game.IsServer) {
             var tr = Trace.Ray(ViewPosition, ViewPosition + (Plr.ViewAngles.Forward * 150)).Ignore(Plr).Run();
             if (PrefabLibrary.TrySpawn<Entity>("prefabs/debugcar.prefab", out var car)) {
                 car.Position = tr.EndPosition;
