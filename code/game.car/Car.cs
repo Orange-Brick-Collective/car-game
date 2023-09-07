@@ -1,6 +1,7 @@
 using Sandbox;
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters;
 
 namespace CarGame;
 
@@ -46,10 +47,10 @@ public partial class Car : AnimatedEntity, ICar, IUse {
         var x = new Vector3(52, 0, 0);
         var y = new Vector3(0, 36, 0);
         var z = new Vector3(0, 0, 6);
-        Wheels.Add(new Wheel() { Powered = false, Steer = true, LocalPosition = x + y + z });
-        Wheels.Add(new Wheel() { Powered = false, Steer = true, LocalPosition = x + -y + z });
-        Wheels.Add(new Wheel() { Powered = true, Steer = false, LocalPosition = -x + y + z });
-        Wheels.Add(new Wheel() { Powered = true, Steer = false, LocalPosition = -x + -y + z });
+        Wheels.Add(new Wheel() { Powered = false, Steer = true, LocalRotation = Rotation.FromPitch(0), LocalPosition = x + y + z });
+        Wheels.Add(new Wheel() { Powered = false, Steer = true, LocalRotation = Rotation.FromPitch(0), LocalPosition = x + -y + z });
+        Wheels.Add(new Wheel() { Powered = true, Steer = false, LocalRotation = Rotation.FromPitch(0), LocalPosition = -x + y + z });
+        Wheels.Add(new Wheel() { Powered = true, Steer = false, LocalRotation = Rotation.FromPitch(0), LocalPosition = -x + -y + z });
 
         foreach (var wheel in Wheels) {
             if (wheel.Powered) PoweredWheels.Add(wheel);
@@ -63,13 +64,11 @@ public partial class Car : AnimatedEntity, ICar, IUse {
     }
 
     public void Drive(float direction) {
-
         foreach (var wheel in PoweredWheels) {
             if (wheel.Grounded) {
-                var rot = Rotation /*+ wheel.LocalRotation.ToRotation()*/;
-                var pos = Position + wheel.LocalPosition * rot;
+                var ts = wheel.GetTransform(Position, Rotation);
                 // ! not applying equally in all directions
-                PhysicsBody.ApplyForceAt(pos, new Vector3(direction, 0, 0) * rot * 600000);
+                PhysicsBody.ApplyForceAt(ts.Position, ts.Rotation.Forward * (direction * 600000));
             }
         }
     }
@@ -77,31 +76,26 @@ public partial class Car : AnimatedEntity, ICar, IUse {
     public void Steer(float direction) {
         PhysicsBody.Rotation = Rotation.RotateAroundAxis(Vector3.Up, direction);
 
-        // foreach (var wheel in SteeringWheels) {
-        //         var rot = Rotation /*+ wheel.LocalRotation.ToRotation()*/;
-        //         var pos = Position + wheel.LocalPosition * rot;
-        //         PhysicsBody.applysomething(pos, direction * rot.Forward * 2000000);
-        // }
+        foreach (var wheel in SteeringWheels) {
+            wheel.LocalRotation = Rotation.Lerp(wheel.LocalRotation, wheel.LocalRotation + Rotation.FromYaw(direction * 45), 0.07f);
+        }
     }
 
     [GameEvent.Physics.PreStep]
     public void Physics() {
-        //if (!active && Time.Tick % 2 == 1) return;
-
         foreach (var wheel in Wheels) {
-            var rot = Rotation /*+ wheel.LocalRotation.ToRotation()*/;
-            var pos = Position + wheel.LocalPosition * rot;
-            var tr = Trace.Ray(pos, pos + rot.Down * 50).Ignore(this).Run();
+            var ts = wheel.GetTransform(Position, Rotation);
+            var tr = Trace.Ray(ts.Position, ts.Position + ts.Rotation.Down * 50).Ignore(this).Run();
             if (!tr.Hit) {
                 wheel.Grounded = false;
                 continue;
             } else wheel.Grounded = true;
 
-            var vel = PhysicsBody.GetVelocityAtPoint(pos); // ! velocity does not account for rotation
+            var vel = PhysicsBody.GetVelocityAtPoint(ts.Position); // ! velocity does not account for rotation
 
             // suspension forces
             // var suspensiondamp
-            PhysicsBody.ApplyForceAt(pos, (50 - tr.Distance) * rot.Up * 10000);
+            PhysicsBody.ApplyForceAt(ts.Position, (50 - tr.Distance) * ts.Rotation.Up * 10000);
 
             // wheel/tire forces
             var force = Vector3.Zero;
@@ -109,11 +103,13 @@ public partial class Car : AnimatedEntity, ICar, IUse {
             var tireAngularThreshold = 50;
             force.y = tireAngularThreshold > vel.y ? -vel.y * 0.4f : -vel.y * 0.1f;
 
-            var tireLinearThreshold = 2;
+            var tireLinearThreshold = 50;
             force.x = tireLinearThreshold > vel.x ? -vel.x * 0.4f : -vel.x * 0.1f;
 
-            PhysicsBody.ApplyForceAt(pos, force * 9000);
-            DebugOverlay.TraceResult(tr, 0.1f);
+            PhysicsBody.ApplyForceAt(ts.Position, force * 9000);
+
+            DebugOverlay.TraceResult(tr, 0.016f);
+            DebugOverlay.Line(ts.Position, ts.Position + ts.Rotation.Forward * 20, Color.White, 0.016f, false);
         }
     }
 

@@ -4,7 +4,7 @@ namespace CarGame;
 
 public interface IWheel {
     public Vector3 LocalPosition { get; set; }
-    public Angles LocalRotation { get; set; }
+    public Rotation LocalRotation { get; set; }
     public float WheelWidth { get; set; }
     public float WheelDiameter { get; set; }
     public float TireDiameter { get; set; }
@@ -16,7 +16,7 @@ public interface IWheel {
 [Prefab]
 public partial class Wheel : BaseNetworkable, IWheel {
     [Prefab, Net, Editor.PointLine] public Vector3 LocalPosition { get; set; }
-    [Prefab, Net] public Angles LocalRotation { get; set; }
+    [Prefab, Net] public Rotation LocalRotation { get; set; }
     [Prefab, Net] public float WheelWidth { get; set; }
     [Prefab, Net] public float WheelDiameter { get; set; }
     [Prefab, Net] public float TireDiameter { get; set; }
@@ -27,4 +27,9 @@ public partial class Wheel : BaseNetworkable, IWheel {
 
     [Net] public bool Grounded { get; set; }
     // ! todo: grip
+
+
+    public Transform GetTransform(Vector3 carPos, Rotation carRot) {
+        return new Transform(carPos + (LocalPosition * carRot), carRot * LocalRotation, 1);
+    }
 }

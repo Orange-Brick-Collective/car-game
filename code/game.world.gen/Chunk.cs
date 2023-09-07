@@ -25,18 +25,21 @@ public partial class Chunk : Entity {
         var indice = ToIndices(vertex);
         var vector = ToVectors(vertex);
 
-        Material mat = Material.Load("materials/debugblend.vmat");
-
-        Mesh mesh = new(mat);
-        mesh.CreateVertexBuffer<BlendVertex>(vertex.Length, GetVertexAttribute(), vertex);
-        mesh.CreateIndexBuffer(indice.Length, indice);
-
-        ModelBuilder model = new();
-        model.AddMesh(mesh);
-
+        Log.Info("e");
         PhysicsBody.ClearShapes();
         PhysicsBody.AddMeshShape(vector, indice);
-        SceneObject.Model = model.Create();
+
+        if (Game.IsClient) {
+            Material mat = Material.Load("materials/debugblend.vmat");
+
+            Mesh mesh = new(mat);
+            mesh.CreateVertexBuffer<BlendVertex>(vertex.Length, GetVertexAttribute(), vertex);
+            mesh.CreateIndexBuffer(indice.Length, indice);
+
+            ModelBuilder model = new();
+            model.AddMesh(mesh);
+            SceneObject.Model = model.Create();
+        }
     }
 
     private BlendVertex[] MakeSurface() {
@@ -45,15 +48,28 @@ public partial class Chunk : Entity {
         for (int x = -CM.HSize; x <= CM.HSize; x++) {
             for (int y = -CM.HSize; y <= CM.HSize; y++) {
                 Vector3 pos = Biome.VertexPos(Position, x, y);
-                list.Add(new BlendVertex() {
-                    Position = pos,
-                    Normal = new Vector3(0, 0, 1), // 0 0 1
-                    Tangent = new Vector4(0, 1, 0, 1), // 0 1 0 1
-                    TexCoord0 = new Vector2(pos.x * 0.01f, pos.y * 0.01f),
-                    Color = new Vector3(1, 1, 1),
-                    BlendIndices = new Vector4(RandInt(), 0, 0, 0), // ! NOT WORKING
-                    BlendWeights = new Vector4(RandFlt(), 0, 0, 0), // ! NOT WORKING
-                });
+
+                if (Game.IsServer) {
+                    list.Add(new BlendVertex() {
+                        Position = pos,
+                        Normal = new Vector3(0, 0, 0),
+                        Tangent = new Vector4(0, 0, 0, 0),
+                        TexCoord0 = new Vector2(0, 0),
+                        Color = new Vector3(0, 0, 0),
+                        BlendIndices = new Vector4(0, 0, 0, 0),
+                        BlendWeights = new Vector4(0, 0, 0, 0),
+                    });
+                } else {
+                    list.Add(new BlendVertex() {
+                        Position = pos,
+                        Normal = new Vector3(0, 0, 1), // 0 0 1
+                        Tangent = new Vector4(0, 1, 0, 1), // 0 1 0 1
+                        TexCoord0 = new Vector2(pos.x * 0.01f, pos.y * 0.01f),
+                        Color = new Vector3(1, 1, 1),
+                        BlendIndices = new Vector4(RandInt(), 0, 0, 0), // ! NOT WORKING
+                        BlendWeights = new Vector4(RandFlt(), 0, 0, 0), // ! NOT WORKING
+                    });
+                }
             }
         }
 
