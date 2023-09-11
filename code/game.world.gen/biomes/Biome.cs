@@ -1,5 +1,4 @@
 using System;
-using System.Globalization;
 using Sandbox;
 using CM = CarGame.ChunkManager;
 
@@ -16,44 +15,39 @@ public class Biome {
     }
 
     public virtual Vector3 VertexPos(Vector3 chunkPos, int x, int y) {
-        Vector3 pos;
-
         int posX = (int)chunkPos.x + x * CM.QuadSide;
         int posY = (int)chunkPos.y + y * CM.QuadSide;
+        float posZ = 0;
 
         float biome = CM.NoisePerlin.GetNoise(posX * 0.05f, posY * 0.05f);
 
         if (new Range(0.4f, 1f).IsIn(biome)) {
-
-            float z = CM.NoisePerlin.GetNoise(posX * 0.1f, posY * 0.1f) * 700 + 200;
-            float z2 = CM.NoisePerlin.GetNoise(posX * 0.011f, posY * 0.011f) * 300;
-            pos = new Vector3(posX, posY, z + z2);
+            posZ += CM.NoisePerlin.GetNoise(posX * 0.1f, posY * 0.1f) * 700 + 200;
+            posZ += CM.NoisePerlin.GetNoise(posX * 0.011f, posY * 0.011f) * 300;
 
         } else if (new Range(0.2f, 0.4f).IsIn(biome)) {
 
-            float z = CM.NoisePerlin.GetNoise(posX * 0.011f, posY * 0.011f) * 300;
+            float z1 = CM.NoisePerlin.GetNoise(posX * 0.1f, posY * 0.1f) * 700 + 200;
+            z1 += CM.NoisePerlin.GetNoise(posX * 0.011f, posY * 0.011f) * 300;
+
             float z2 = CM.NoisePerlin.GetNoise(posX * 0.06f, posY * 0.06f) * 200;
-            pos = new Vector3(posX, posY, z + z2);
+
+            posZ = BiomeBlendZ(z1, z2, 0.2f, 0.4f);
 
         } else if (new Range(-0.4f, 0.2f).IsIn(biome)) {
-
-            float z = CM.NoisePerlin.GetNoise(posX * 0.06f, posY * 0.06f) * 200;
-            pos = new Vector3(posX, posY, z);
+            posZ += CM.NoisePerlin.GetNoise(posX * 0.06f, posY * 0.06f) * 200;
 
         } else {
-            float z = CM.NoisePerlin.GetNoise(posX * 0.1f, posY * 0.1f) * 20;
-            pos = new Vector3(posX, posY, z);
+            posZ += CM.NoisePerlin.GetNoise(posX * 0.1f, posY * 0.1f) * 20;
         }
 
-        return pos;
+        return new Vector3(posX, posY, posZ);
     }
 
-    public virtual int VertexIndice(int x, int y) {
-        return 0;
-    }
-
-    public virtual int VertexBlend(int x, int y) {
-        return 0;
+    private float BiomeBlendZ(float z1, float z2, float low, float high) {
+        float top = (high - low) / 1;
+        float fraction = (z1 + z2 * 0.5f) * top;
+        return MathX.Lerp(z1, z2, fraction);
     }
 }
 

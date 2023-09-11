@@ -94,7 +94,7 @@ public partial class WalkController : Controller {
 
         Camera.Position = ViewPosition;
         Camera.Rotation = Plr.ViewAngles.ToRotation();
-        Camera.FieldOfView = Screen.CreateVerticalFieldOfView(Game.Preferences.FieldOfView);
+        Camera.FieldOfView = Screen.CreateVerticalFieldOfView(Game.Preferences.FieldOfView) + 30;
         Camera.ZFar = 160000;
         Camera.FirstPersonViewer = Plr;
     }

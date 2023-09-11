@@ -9,9 +9,9 @@ public partial class ChunkManager : BaseNetworkable {
     internal static ChunkManager Current;
     internal static readonly FastNoiseLite NoisePerlin = new();
     internal static readonly FastNoiseLite NoiseSimplex = new();
-    internal static int Size = 24; // chunk block size NEEDS TO BE EVEN (16)
-    internal static int HSize = Size / 2; // half chunk size, for iterating (8)
-    internal static int VSize = Size + 1; // verticle size (17)
+    internal static int Size = 32; // chunk block size NEEDS TO BE EVEN (32)
+    internal static int HSize = Size / 2; // half chunk size, for iterating (16)
+    internal static int VSize = Size + 1; // verticle size (33)
     internal static int QuadSide = 75; // Vert sizing (100)
 
     [Net] public int Seed { get; set; } = 0;
@@ -40,7 +40,6 @@ public partial class ChunkManager : BaseNetworkable {
 
     [ClientRpc]
     public static void SpawnChunksClient(int seed) {
-        Log.Info(Current);
         Current.Seed = seed;
         NoisePerlin.SetSeed(Current.Seed);
         NoiseSimplex.SetSeed(Current.Seed);

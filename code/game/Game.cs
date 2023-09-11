@@ -1,13 +1,12 @@
 ﻿using Sandbox;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace CarGame;
 
 public partial class MyGame : GameManager {
     public ChunkManager ChunkManager { get; set; }
     [Net] public Sky Sky { get; set; }
+
+    private readonly Hud hud;
 
     public MyGame() {
         ChunkManager = new ChunkManager();
@@ -22,7 +21,7 @@ public partial class MyGame : GameManager {
         }
 
         if (Game.IsClient) {
-
+            hud ??= new Hud();
         }
     }
 

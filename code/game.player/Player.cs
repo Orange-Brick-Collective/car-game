@@ -20,6 +20,9 @@ public partial class Player : AnimatedEntity {
         EnableHideInFirstPerson = true;
         EnableShadowInFirstPerson = true;
     }
+    public override void ClientSpawn() {
+        SetupPhysicsFromModel(PhysicsMotionType.Keyframed);
+    }
 
     public override void BuildInput() {
         Controller?.BuildInput();

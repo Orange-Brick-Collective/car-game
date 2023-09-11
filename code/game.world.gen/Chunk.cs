@@ -25,7 +25,6 @@ public partial class Chunk : Entity {
         var indice = ToIndices(vertex);
         var vector = ToVectors(vertex);
 
-        Log.Info("e");
         PhysicsBody.ClearShapes();
         PhysicsBody.AddMeshShape(vector, indice);
 

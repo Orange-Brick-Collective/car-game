@@ -27,7 +27,7 @@ public partial class Car : AnimatedEntity, ICar, IUse {
     [Prefab, Net] public float Horsepower { get; set; }
     [Prefab, Net] public int Redline { get; set; }
 
-    [Prefab, Net] public List<Wheel> Wheels { get; set; } = new();
+    [Prefab, Net] public IList<Wheel> Wheels { get; set; } = new List<Wheel>();
     public List<Wheel> SteeringWheels { get; set; } = new();
     public List<Wheel> PoweredWheels { get; set; } = new();
 
@@ -74,10 +74,12 @@ public partial class Car : AnimatedEntity, ICar, IUse {
     }
 
     public void Steer(float direction) {
-        PhysicsBody.Rotation = Rotation.RotateAroundAxis(Vector3.Up, direction);
-
         foreach (var wheel in SteeringWheels) {
+            DebugOverlay.ScreenText(SteeringWheels[0].LocalRotation.ToString(), new Vector3(50, 200), 0, Color.White);
+            DebugOverlay.ScreenText(SteeringWheels[1].LocalRotation.ToString(), new Vector3(50, 200), 1, Color.White);
             wheel.LocalRotation = Rotation.Lerp(wheel.LocalRotation, wheel.LocalRotation + Rotation.FromYaw(direction * 45), 0.07f);
+            var move = LocalVelocity.WithY(0).WithZ(0).LengthSquared > 5 ? 1 : 0;
+            PhysicsBody.Rotation = Rotation.RotateAroundAxis(Vector3.Up, Math.Clamp(wheel.LocalRotation.Yaw() * 0.05f * move, -1, 1));
         }
     }
 
